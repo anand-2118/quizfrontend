@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/AuthServices';
 
 function Registration() {
     const [formData, setFormData] = useState({
@@ -18,21 +19,29 @@ function Registration() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
+        try{
+            console.log("before prevent default")
         e.preventDefault();
         const { name, email, password, confirmPassword } = formData;
-
+        console.log({name, email, password, confirmPassword} )
+        
         if (password !== confirmPassword) {
+            console.log("password !== confirmPassword")
             setError("Passwords do not match");
             return;
         }
-
+       const data = await registerUser({name,email,password,confirmPassword})
         // Simulate registration (You can replace this with API call)
-        console.log('User Registered:', { name, email, password });
+        console.log('User Registered:', data);
         console.log(formData)
 
         // Redirect to the login page after registration
         navigate('/login');
+        }
+        catch(e){
+            console.log(e);
+        }
     };
 
     return (

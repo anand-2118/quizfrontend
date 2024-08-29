@@ -22,7 +22,7 @@ function Login() {
       const data = await loginUser(formData);
       console.log(data)
       login(data); // Save user and token in context and localStorage
-      navigate('/home'); // Navigate to home/dashboard after successful login
+      navigate('/dashboard'); // Navigate to home/dashboard after successful login
     } catch (err) {
       setError(err);
     }

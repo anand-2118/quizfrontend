@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api/auth'; // Your backend URL
+// const API_URL = 'http://localhost:4000/api/auth'; // Your backend URL
 
 // Register new user
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/register`, userData);
+    // const response = await axios.post(`${API_URL}/register`, userData);
+    const response = await axios.post('http://localhost:4000/api/auth/register', userData);
     console.log(userData)
     return response.data;
   } catch (error) {
@@ -16,7 +17,7 @@ export const registerUser = async (userData) => {
 // Login user
 export const loginUser = async (loginData) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, loginData);
+    const response = await axios.post('http://localhost:4000/api/auth/login', loginData);
     return response.data;
   } catch (error) {
     throw error.response.data;
